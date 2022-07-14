@@ -35,6 +35,7 @@ public:
 
     bool process();
 
+    // iov[0]:存响应头,  iov[1]:存响应体
     int toWriteBytes()
     {
         return iov[0].iov_len + iov[1].iov_len;
@@ -47,7 +48,7 @@ public:
 
     static bool isET;
     static const char *srcDir;
-    static atomic<int> userCnt;
+    static std::atomic<int> userCnt; /*std::atomic<T>模板类可以使对象操作为原子操作，避免多线程竞争问题*/
 
 private:
     int fd;
