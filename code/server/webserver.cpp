@@ -14,9 +14,10 @@ WebServer::WebServer(
     //内部调用malloc动态分配缓存
     srcDir = getcwd(nullptr, 256);
     assert(srcDir);
-    strncat(srcDir, "/resources/", 16);
+    strncat(srcDir, "/../resources/", 16);
     Http_Connect::userCnt = 0;
     Http_Connect::srcDir = srcDir;
+    std::cout << Http_Connect::srcDir << std::endl;
     //线程池唯一实例初始化
     ThreadPool::instance()->init(threadNum, maxRequests);
     //连接池唯一实例初始化
