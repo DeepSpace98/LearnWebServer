@@ -2,7 +2,7 @@
 
 const char *Http_Connect::srcDir;
 std::atomic<int> Http_Connect::userCnt;
-bool HttpConnect::isET;
+bool Http_Connect::isET;
 
 Http_Connect::Http_Connect()
 {
@@ -77,7 +77,7 @@ ssize_t Http_Connect::write(int *saveErrno)
         else if ((size_t)len > iov[0].iov_len)
         {
             //更新响应体传输起点和长度
-            iov[1].iov_base = (uint8_t *)iov[1].iov_base + (len - iov[0].iov_base);
+            iov[1].iov_base = (uint8_t *)iov[1].iov_base + (len - iov[0].iov_len);
             iov[1].iov_len -= (len - iov[0].iov_len);
             //响应头不再需要传输
             if (iov[0].iov_len)

@@ -13,6 +13,7 @@
 #include "../sqlconnpool/sql_conn_pool.h"
 #include "../threadpool/threadpool.h"
 
+using namespace std;
 /*
        服务器处理HTTP请求的可能结果，报文解析的结果
        NO_REQUEST          :   请求不完整，需要继续读取客户数据
@@ -66,7 +67,7 @@ public:
     bool isKeepAlive() const;
 
 private:
-    HTTP_CODE parseReuestLine(const string &line);
+    HTTP_CODE parseRequestLine(const string &line);
     HTTP_CODE parseHeader(const string &line);
     HTTP_CODE parseBody();
 
@@ -84,7 +85,7 @@ private:
     unordered_map<string, string> post;
     unordered_map<string, string> fileInfo;
 
-    static const unordered_map<string> DEFAULT_HTML;
+    static const unordered_set<string> DEFAULT_HTML;
     static const unordered_map<string, int> DEFAULT_HTML_TAG;
     static int convertHex(char ch);
 };
